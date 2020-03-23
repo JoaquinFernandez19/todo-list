@@ -8,6 +8,7 @@ import { $task } from './task';
 //cardModule
 const content = document.querySelector('#content');
 const cardsContainer = document.querySelector('.cards-container');
+const body = document.body;
 let taskHolder = [];
 
 const loadDocument = () => {
@@ -16,4 +17,4 @@ const loadDocument = () => {
 
 window.onload = loadDocument();
 
-export { taskHolder, cardsContainer };
+export { taskHolder, cardsContainer, content, body };

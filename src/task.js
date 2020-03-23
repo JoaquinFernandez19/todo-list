@@ -1,5 +1,5 @@
 import { $newBtn } from './newTask';
-import { taskHolder, content, cardsContainer } from './index';
+import { taskHolder, cardsContainer, body } from './index';
 ///////////////////////////////////////
 const $task = (function() {
 	'use strict';
@@ -10,8 +10,8 @@ const $task = (function() {
 			this.title = title;
 			this.description = description;
 			this.priority = priority;
-			this.dueDateDay = dueDateHr;
-			this.dueDateHr = dueDateDay;
+			this.dueDateHr = dueDateHr;
+			this.dueDateDay = dueDateDay;
 			this.state = 'open';
 		}
 
@@ -40,7 +40,7 @@ const $task = (function() {
 				</div>
 				<div class="task__dueDate">
 					<p>
-						${this.dueDateHr}
+						${this.dueDateHr}<br>
 						${this.dueDateDay}
 					</p>
 				</div>`;
@@ -70,8 +70,9 @@ const $task = (function() {
 				</div>
 				<div class="task__dueDate">
 					<p>
-						${this.dueDateHr}
-						${this.dueDateDay}
+					${this.dueDateHr}<br>
+					${this.dueDateDay}
+
 					</p>
 				</div>`;
 				cardsContainer.appendChild(taskImportantDOM);
@@ -86,7 +87,9 @@ const $task = (function() {
 					</p>
 				</div>
 				<div class="task__closeBtn">
-					<i class="far fa-window-close close"></i>
+					<span class="closeTask">
+						<i class="far fa-window-close close"></i>
+					</span>
 				</div>
 				<div class="task__description">
 					<p>
@@ -100,26 +103,59 @@ const $task = (function() {
 				</div>
 				<div class="task__dueDate">
 					<p>
-						${this.dueDateHr}
-						${this.dueDateDay}
+					${this.dueDateHr}<br>
+					${this.dueDateDay}
+	
 					</p>
 				</div>`;
 
 				cardsContainer.appendChild(taskPendingDOM);
 			}
 		}
+		closeTask() {}
 	}
+	function createTask() {
+		let formTitle = $newBtn.form.querySelector('#title').value;
+		let formDescription = $newBtn.form.querySelector('#description').value;
+		let formPriority;
+		switch (true) {
+			case $newBtn.form.querySelector('#Urgente').checked:
+				formPriority = 'Urgente';
+				break;
+			case $newBtn.form.querySelector('#Importante').checked:
+				formPriority = 'Importante';
+				break;
+			case $newBtn.form.querySelector('#Pendiente').checked:
+				formPriority = 'Pendiente';
+				break;
+			default:
+				formPriority = 'Pendiente';
+		}
+		let formDueDateHr = $newBtn.form.querySelector('#time').value;
+		let formDueDateDay = $newBtn.form.querySelector('#day').value;
+		//object ctask
+		let task = new Task();
+		task.title = formTitle || 'Tarea';
+		task.description = formDescription || 'Hacer algo...';
+		task.priority = formPriority || 'Pendiente';
+		task.dueDateHr = formDueDateHr || 'En algún momento';
+		task.dueDateDay = formDueDateDay || 'Algún día';
+		taskHolder.push(task);
+		task.renderTask();
+		$newBtn.form.style.display = 'none';
+		///////////////
+	}
+
+	$newBtn.submitBtn.addEventListener('click', () => {
+		createTask();
+	});
+	$newBtn.closeSpan.addEventListener('click', () => {
+		body.removeChild($newBtn.form);
+	});
 	//add a new task
 	$newBtn.plusBtn.addEventListener('click', () => {
-		let task = new Task();
-		task.title = prompt('title') || 'Tarea';
-		task.description = prompt('description') || 'Hacer algo...';
-		task.priority = prompt('priority') || 'Pendiente';
-		task.dueDateHr = prompt('hr') || 'Algún día';
-		task.dueDateDay = prompt('day') || '';
-
-		console.log(taskHolder);
-		task.renderTask();
+		body.appendChild($newBtn.form);
+		$newBtn.form.style.display = 'flex';
 	});
 
 	return {
