@@ -6,17 +6,19 @@ const $task = (function() {
 	//Create task dom element
 
 	class Task {
-		constructor(title, description, priority, dueDateHr, dueDateDay, state) {
+		constructor(title, description, priority, dueDateHr, dueDateDay) {
 			this.title = title;
 			this.description = description;
 			this.priority = priority;
 			this.dueDateHr = dueDateHr;
 			this.dueDateDay = dueDateDay;
-			this.state = 'open';
 		}
 
 		renderTask() {
-			if (this.priority === 'Urgente' && this.state === 'open') {
+			//Depengin on the priority, we make a diferente DOM version of the task
+			//Every dom element has a eventlistener in his close btn to detect if the person
+			//wants to close it
+			if (this.priority === 'Urgente') {
 				let taskUrgentDOM = document.createElement('div');
 				taskUrgentDOM.classList.add('task', 'urgentTask');
 				taskUrgentDOM.innerHTML = `
@@ -26,7 +28,9 @@ const $task = (function() {
 					</p>
 				</div>
 				<div class="task__closeBtn">
-					<i class="far fa-window-close close"></i>
+					<span class="closeTask">
+						<i class="far fa-window-close close"></i>
+					</span>
 				</div>
 				<div class="task__description">
 					<p>
@@ -45,8 +49,14 @@ const $task = (function() {
 					</p>
 				</div>`;
 				cardsContainer.appendChild(taskUrgentDOM);
+				let closeTask = taskUrgentDOM.querySelector('.closeTask');
+				closeTask.addEventListener('click', () => {
+					console.log(`removed ${this.title}`);
+					cardsContainer.removeChild(taskUrgentDOM);
+					this.deleteTask();
+				});
 			}
-			if (this.priority === 'Importante' && this.state === 'open') {
+			if (this.priority === 'Importante') {
 				let taskImportantDOM = document.createElement('div');
 				taskImportantDOM.classList.add('task', 'importantTask');
 				taskImportantDOM.innerHTML = `
@@ -56,7 +66,9 @@ const $task = (function() {
 					</p>
 				</div>
 				<div class="task__closeBtn">
-					<i class="far fa-window-close close"></i>
+					<span class="closeTask">
+						<i class="far fa-window-close close"></i>
+					</span>
 				</div>
 				<div class="task__description">
 					<p>
@@ -76,8 +88,15 @@ const $task = (function() {
 					</p>
 				</div>`;
 				cardsContainer.appendChild(taskImportantDOM);
+				let closeTask = taskImportantDOM.querySelector('.closeTask');
+				closeTask.addEventListener('click', () => {
+					console.log(`removed ${this.title}`);
+					cardsContainer.removeChild(taskImportantDOM);
+
+					this.deleteTask();
+				});
 			}
-			if (this.priority === 'Pendiente' && this.state === 'open') {
+			if (this.priority === 'Pendiente') {
 				let taskPendingDOM = document.createElement('div');
 				taskPendingDOM.classList.add('task', 'easyTask');
 				taskPendingDOM.innerHTML = `
@@ -110,11 +129,38 @@ const $task = (function() {
 				</div>`;
 
 				cardsContainer.appendChild(taskPendingDOM);
+				let closeTask = taskPendingDOM.querySelector('.closeTask');
+				closeTask.addEventListener('click', () => {
+					console.log(`removed ${this.title}`);
+					cardsContainer.removeChild(taskPendingDOM);
+
+					this.deleteTask();
+				});
 			}
 		}
-		closeTask() {}
+		deleteTask(e) {
+			let allEntries = JSON.parse(localStorage.getItem('allEntries')) || [];
+
+			allEntries.forEach((entry) => {
+				if (
+					entry.title === this.title &&
+					entry.description === this.description &&
+					entry.priority === this.priority
+				) {
+					let index = allEntries.indexOf(entry);
+					if (index > -1) {
+						allEntries.splice(index, 1);
+					}
+
+					localStorage.setItem('allEntries', JSON.stringify(allEntries));
+				}
+			});
+			let index = taskHolder.indexOf(this);
+			taskHolder.splice(index, 1);
+		}
 	}
 	function createTask() {
+		//get the data from the FORM
 		let formTitle = $newBtn.form.querySelector('#title').value;
 		let formDescription = $newBtn.form.querySelector('#description').value;
 		let formPriority;
@@ -140,15 +186,21 @@ const $task = (function() {
 		task.priority = formPriority || 'Pendiente';
 		task.dueDateHr = formDueDateHr || 'En algún momento';
 		task.dueDateDay = formDueDateDay || 'Algún día';
+
+		//save object in array
 		taskHolder.push(task);
+		//render the object in the html
 		task.renderTask();
+		//hide the form
 		$newBtn.form.style.display = 'none';
 		///////////////
 	}
 
+	//submit task
 	$newBtn.submitBtn.addEventListener('click', () => {
 		createTask();
 	});
+	//close form
 	$newBtn.closeSpan.addEventListener('click', () => {
 		body.removeChild($newBtn.form);
 	});
