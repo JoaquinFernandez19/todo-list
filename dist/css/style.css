@@ -67,18 +67,11 @@ body {
 }
 
 .taskForm {
-  padding: 1em;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   -webkit-backdrop-filter: blur(3px);
           backdrop-filter: blur(3px);
   position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 form {
@@ -87,8 +80,10 @@ form {
   font-family: Quicksand;
   z-index: 21;
   width: 25em;
-  height: 40em;
-  margin-top: 8em;
+  height: 35em;
+  margin: auto;
+  margin-top: 5em;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -100,7 +95,6 @@ form {
       -ms-flex-align: stretch;
           align-items: stretch;
   color: #fff98c;
-  position: relative;
   -webkit-animation: animationBlur 0.5s ease;
           animation: animationBlur 0.5s ease;
 }
@@ -178,8 +172,6 @@ form .checkboxStyle {
   width: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-negative: none;
-      flex-shrink: none;
 }
 
 .task {
@@ -383,87 +375,34 @@ form .checkboxStyle {
   }
 }
 
-@media (max-width: 551px) {
-  .task {
-    -webkit-transform: scaleX(0.9);
-            transform: scaleX(0.9);
+@media (max-height: 650px) {
+  form {
+    margin-top: 1.5em;
+  }
+}
+
+@media (max-width: 538px) {
+  .new-task-btn p {
+    font-size: 0.8em;
   }
   .cards-container {
-    margin-top: 5em;
-  }
-  .taskForm {
-    top: 0;
-    z-index: 30;
-  }
-  .taskForm form {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 0;
-    height: 100vh;
-    -webkit-transform: scaleY(0.94);
-            transform: scaleY(0.94);
-  }
-  .taskForm input {
-    margin: 0.3em 1em 0.3em 1em;
-  }
-  .new-task-btn {
-    z-index: 20;
-  }
-}
-
-@media (max-width: 479px) {
-  .task {
-    -webkit-transform: scaleX(0.8);
-            transform: scaleX(0.8);
-  }
-}
-
-@media (max-width: 428px) {
-  .task {
-    -webkit-transform: scaleX(0.7);
-            transform: scaleX(0.7);
-  }
-}
-
-@media (max-width: 417px) {
-  .task {
-    padding: 0;
-    font-weight: bolder;
-  }
-  .checkboxStyle {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    padding-left: 1.5em;
-  }
-  .checkboxStyle input {
-    background-color: green;
-  }
-}
-
-@media (max-width: 381px) {
-  .new-task-btn {
-    width: 100%;
-  }
-  .new-task-btn p {
     font-size: 0.8em;
   }
 }
 
-@media (max-width: 368px) {
-  .task {
-    -webkit-transform: scaleX(0.65);
-            transform: scaleX(0.65);
-    font-size: 1em;
+@media (max-width: 431px) {
+  .task__title {
+    min-width: 10em;
+  }
+  .cards-container {
+    margin-top: 5em;
   }
 }
 
-@media (max-width: 339px) {
-  .task {
-    -webkit-transform: scaleX(0.6);
-            transform: scaleX(0.6);
+@media (max-width: 431px) {
+  .new-task-btn {
+    width: 100%;
+    padding: 0.5em;
   }
 }
 /*# sourceMappingURL=style.css.map */

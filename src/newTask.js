@@ -69,13 +69,13 @@ const $newBtn = (function() {
 	innerForm.insertBefore(closeSpan, innerForm.children[0]);
 	//scrol efect
 	window.addEventListener('scroll', () => {
-		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-			btnDiv.style.transition = 'font-size 0.1s';
+		if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+			btnDiv.style.transition = 'font-size 0.3s';
 			btnDiv.style.fontSize = '1.5em';
 			paragraph.textContent = '';
 			plusBtn.style.fontSize = '2em';
 		} else {
-			btnDiv.style.transition = 'font-size 0.1s';
+			btnDiv.style.transition = 'font-size 0.3s';
 			btnDiv.style.fontSize = '2em';
 			plusBtn.style.fontSize = '1em';
 			paragraph.textContent = 'Nueva tarea';
