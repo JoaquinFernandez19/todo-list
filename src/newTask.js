@@ -17,6 +17,19 @@ const $newBtn = (function() {
 	btnDiv.appendChild(span);
 
 	let plusBtn = span;
+	// HOUR AND DATE
+	let today = new Date();
+	function getMinutesX() {
+		let minutes = today.getMinutes();
+		let minutesString = minutes.toString();
+		if (minutesString.length < 2) {
+			return `0 ${minutesString}`;
+		} else {
+			return minutesString;
+		}
+	}
+
+	let time = today.getHours() + ':' + getMinutesX();
 
 	//form popUp
 	let form = document.createElement('div');
@@ -41,7 +54,7 @@ const $newBtn = (function() {
 			id="title"
 			name="title"
 			value=""
-			placeholder = "Limpieza general"
+			placeholder = "Limpiar"
 		 />
 
 		<label class="miniLabel">Descripcion</label>
@@ -57,13 +70,14 @@ const $newBtn = (function() {
 		
 		<label class="miniLabel">Hora</label>
 		<input type="time" id="time" name="time"
-	   min="09:00" max="18:00" value="17:00" required>
+	    value="${time}" required>
 	   <label class="miniLabel">Fecha</label>
 	   <input type="date" id="day" name="day"
-       value="2020-03-23"
+       value=""
        min="2020-03-23" max="2020-12-31"required>
 	</form>
 	`;
+
 	let innerForm = form.querySelector('form');
 	innerForm.appendChild(submitBtn);
 	innerForm.insertBefore(closeSpan, innerForm.children[0]);

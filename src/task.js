@@ -138,13 +138,14 @@ const $task = (function() {
 				});
 			}
 		}
-		deleteTask(e) {
+		deleteTask() {
 			let allEntries = JSON.parse(localStorage.getItem('allEntries')) || [];
 
 			allEntries.forEach((entry) => {
 				if (
 					entry.title === this.title &&
 					entry.description === this.description &&
+					entry.dueDateHr === this.dueDateHr &&
 					entry.priority === this.priority
 				) {
 					let index = allEntries.indexOf(entry);
@@ -160,6 +161,17 @@ const $task = (function() {
 		}
 	}
 	function createTask() {
+		//TIMEEEEEEE
+		function getSecondsX() {
+			let today = new Date();
+			let seconds = today.getSeconds();
+			let secondsString = seconds.toString();
+			if (secondsString.length < 2) {
+				return `0${secondsString}`;
+			} else {
+				return secondsString;
+			}
+		}
 		//get the data from the FORM
 		let formTitle = $newBtn.form.querySelector('#title').value;
 		let formDescription = $newBtn.form.querySelector('#description').value;
@@ -177,7 +189,7 @@ const $task = (function() {
 			default:
 				formPriority = 'Pendiente';
 		}
-		let formDueDateHr = $newBtn.form.querySelector('#time').value;
+		let formDueDateHr = $newBtn.form.querySelector('#time').value + ':' + getSecondsX();
 		let formDueDateDay = $newBtn.form.querySelector('#day').value;
 		//object ctask
 		let task = new Task();
@@ -199,6 +211,7 @@ const $task = (function() {
 	//submit task
 	$newBtn.submitBtn.addEventListener('click', () => {
 		createTask();
+		body.removeChild($newBtn.form);
 	});
 	//close form
 	$newBtn.closeSpan.addEventListener('click', () => {
