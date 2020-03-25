@@ -30,7 +30,6 @@ const loadDocument = () => {
 };
 
 window.onload = loadDocument();
-
 window.addEventListener(
 	'beforeunload',
 	() => {
@@ -44,3 +43,4 @@ window.addEventListener(
 );
 
 export { taskHolder, cardsContainer, content, body };
+////

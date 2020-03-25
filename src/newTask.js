@@ -67,7 +67,20 @@ const $newBtn = (function() {
 	let innerForm = form.querySelector('form');
 	innerForm.appendChild(submitBtn);
 	innerForm.insertBefore(closeSpan, innerForm.children[0]);
-
+	//scrol efect
+	window.addEventListener('scroll', () => {
+		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+			btnDiv.style.transition = 'font-size 0.1s';
+			btnDiv.style.fontSize = '1.5em';
+			paragraph.textContent = '';
+			plusBtn.style.fontSize = '2em';
+		} else {
+			btnDiv.style.transition = 'font-size 0.1s';
+			btnDiv.style.fontSize = '2em';
+			plusBtn.style.fontSize = '1em';
+			paragraph.textContent = 'Nueva tarea';
+		}
+	});
 	return {
 		closeSpan,
 		innerForm,
