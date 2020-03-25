@@ -106,7 +106,7 @@ form {
 }
 
 form input {
-  padding: 1em;
+  padding: 0.5em;
   margin: 1em;
   color: black;
   font-family: Quicksand;
@@ -396,9 +396,16 @@ form .checkboxStyle {
     z-index: 30;
   }
   .taskForm form {
-    margin-top: -4em;
-    -webkit-transform: scaleY(0.8);
-            transform: scaleY(0.8);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0;
+    height: 100vh;
+    -webkit-transform: scaleY(0.94);
+            transform: scaleY(0.94);
+  }
+  .taskForm input {
+    margin: 0.3em 1em 0.3em 1em;
   }
   .new-task-btn {
     z-index: 20;
@@ -424,6 +431,16 @@ form .checkboxStyle {
     padding: 0;
     font-weight: bolder;
   }
+  .checkboxStyle {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    padding-left: 1.5em;
+  }
+  .checkboxStyle input {
+    background-color: green;
+  }
 }
 
 @media (max-width: 381px) {
@@ -436,12 +453,10 @@ form .checkboxStyle {
 }
 
 @media (max-width: 368px) {
-  .taskForm {
-    height: 200vh;
-  }
   .task {
     -webkit-transform: scaleX(0.65);
             transform: scaleX(0.65);
+    font-size: 1em;
   }
 }
 
