@@ -95,8 +95,8 @@ form {
       -ms-flex-align: stretch;
           align-items: stretch;
   color: #fff98c;
-  -webkit-animation: animationBlur 0.5s ease;
-          animation: animationBlur 0.5s ease;
+  -webkit-animation: animationBig 0.3s linear;
+          animation: animationBig 0.3s linear;
 }
 
 form input {
@@ -353,25 +353,25 @@ form .checkboxStyle {
   }
 }
 
-@-webkit-keyframes animationBlur {
+@-webkit-keyframes animationBig {
   0% {
-    -webkit-filter: blur(10px);
-            filter: blur(10px);
+    -webkit-transform: scale(2, 2);
+            transform: scale(2, 2);
   }
   100% {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
   }
 }
 
-@keyframes animationBlur {
+@keyframes animationBig {
   0% {
-    -webkit-filter: blur(10px);
-            filter: blur(10px);
+    -webkit-transform: scale(2, 2);
+            transform: scale(2, 2);
   }
   100% {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
   }
 }
 

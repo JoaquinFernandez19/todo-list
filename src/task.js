@@ -205,13 +205,13 @@ const $task = (function() {
 		task.renderTask();
 		//hide the form
 		$newBtn.form.style.display = 'none';
+		$newBtn.innerForm.reset();
 		///////////////
 	}
 
 	//submit task
 	$newBtn.submitBtn.addEventListener('click', () => {
 		createTask();
-		body.removeChild($newBtn.form);
 	});
 	//close form
 	$newBtn.closeSpan.addEventListener('click', () => {

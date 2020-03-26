@@ -60,7 +60,7 @@ form {
 	flex-direction: column;
 	align-items: stretch;
 	color: #fff98c;
-	animation: animationBlur 0.5s ease;
+	animation: animationBig 0.3s linear;
 	input {
 		padding: 0.5em;
 		margin: 1em;
@@ -232,13 +232,13 @@ form {
 		transform: scale(1, 1);
 	}
 }
-@keyframes animationBlur {
+@keyframes animationBig {
 	0% {
-		filter: blur(10px);
+		transform: scale(2, 2);
 	}
 
 	100% {
-		filter: blur(0px);
+		transform: scale(1, 1);
 	}
 }
 
