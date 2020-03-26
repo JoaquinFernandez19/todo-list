@@ -1,7 +1,9 @@
+import './style.scss';
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+
 //newTaskBtn
 import { $newBtn } from './newTask';
 import { $task } from './task';
