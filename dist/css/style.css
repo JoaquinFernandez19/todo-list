@@ -405,4 +405,14 @@ form .checkboxStyle {
     padding: 0.5em;
   }
 }
+
+@media (max-width: 366px) {
+  .checkboxStyle {
+    padding-left: 2em;
+  }
+  .checkboxStyle label {
+    position: relative;
+    right: 10px;
+  }
+}
 /*# sourceMappingURL=style.css.map */

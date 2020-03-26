@@ -25,8 +25,6 @@ const loadDocument = () => {
 		oldTask.dueDateDay = task.dueDateDay;
 		oldTask.renderTask();
 	});
-
-	console.table(taskHolder);
 };
 
 window.onload = loadDocument();
