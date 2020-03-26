@@ -23,13 +23,22 @@ const $newBtn = (function() {
 		let minutes = today.getMinutes();
 		let minutesString = minutes.toString();
 		if (minutesString.length < 2) {
-			return `0 ${minutesString}`;
+			return `0${minutesString}`;
 		} else {
 			return minutesString;
 		}
 	}
+	function gethoursX() {
+		let hours = today.getHours();
+		let hoursString = hours.toString();
+		if (hoursString.length < 2) {
+			return `0${hoursString}`;
+		} else {
+			return hoursString;
+		}
+	}
 
-	let time = today.getHours() + ':' + getMinutesX();
+	let time = gethoursX() + ':' + getMinutesX();
 
 	//form popUp
 	let form = document.createElement('div');
